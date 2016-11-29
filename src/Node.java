@@ -1,10 +1,10 @@
 
-public class Node implements Comparable<Object> {
+public class Node implements Comparable<Node> {
 	private Short ch;
 	private int freq;
 	private Node left;
 	private Node right;
-	
+
 	/** Used to construct leaf nodes
 	 */
 	public Node(Short ch, int freq) {
@@ -13,7 +13,7 @@ public class Node implements Comparable<Object> {
 		left = null;
 		right = null;
 	}
-	
+
 	/** Additional constructor takes left and right node arguments
 	 * Used for interior nodes
 	 *
@@ -26,18 +26,13 @@ public class Node implements Comparable<Object> {
 	}
 
 	@Override
-	public int compareTo(Object o) {
-		if (o instanceof Node) {
-			Node other = (Node) o;
-			if (other.freq > freq) {
-				return other.freq - freq;
-			} else if (other.freq < freq) {
-				return freq - other.freq;
-			} else {
-				return 0;
-			}
+	public int compareTo(Node other) {
+		if (other.freq > freq) {
+			return other.freq - freq;
+		} else if (freq > other.freq) {
+			return freq - other.freq;
 		} else {
-			throw new IllegalArgumentException();
+			return 0;
 		}
 	}
 }
