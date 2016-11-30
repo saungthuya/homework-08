@@ -21,13 +21,21 @@ public class HuffmanTree {
 		}
 		temp.enqueue(new Node((short) 256, 1));
 		
-		temp.print();
-		
+		buildTree(temp);
+		root = temp.dequeue();
+		root.printTree();
 	}
 	
-	public void buildTree() {
-		
+	public void buildTree(PriorityQueue queue) {
+		while (queue.size() >= 2) {
+			Node condensed = queue.makeInternalNode();
+			//System.out.println(condensed.freq);
+			queue.enqueue(condensed);
+			//queue.print();
+			//System.out.println("!!!!!");
+		}
 	}
+	
 	
 	void encode(BitInputStream in, BitOutputStream out) {
 		

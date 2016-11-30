@@ -19,7 +19,7 @@ public class Node implements Comparable<Node> {
 	 *
 	 */
 	public Node(int freq, Node left, Node right) {
-		this.ch = (Short) null;
+		this.ch = (short) 0;
 		this.freq = freq;
 		this.left = left;
 		this.right = right;
@@ -35,5 +35,16 @@ public class Node implements Comparable<Node> {
 	@Override
 	public int compareTo(Node other) {
 		return freq - other.freq;
+	}
+	
+	public void printTree() {
+		if (this.left != null) {
+			this.left.printTree();
+		}
+		System.out.println((char) ch + " : " + freq);
+		
+		if (this.right!= null) {
+			this.right.printTree();
+		}
 	}
 }

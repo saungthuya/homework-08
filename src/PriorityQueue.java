@@ -14,29 +14,38 @@ public class PriorityQueue {
 	//	}
 
 	// invariant data is sorted
-	protected List<Node> data;
+	protected List<Node> queue;
 
 	public PriorityQueue() {
-		data = new LinkedList<>();
+		queue = new LinkedList<>();
 	}
 
 	// @citation mattori helped the shit out of us. 
 	public void enqueue(Node n) {
-		for (int i = 0; i < data.size(); i++) {
-			if (n.freq < data.get(i).freq) {
-				data.add(i, n);
+		for (int i = 0; i < queue.size(); i++) {
+			if (n.freq < queue.get(i).freq) {
+				queue.add(i, n);
 				return;
 			}
 		}
-		data.add(n);
+		queue.add(n);
 	}
 
 	public Node dequeue() {
-		return data.remove(0);
+		return queue.remove(0);
+	}
+
+	public Node makeInternalNode() {
+		int summary = queue.get(0).freq + queue.get(1).freq;
+		return new Node(summary, this.dequeue(), this.dequeue());
+	}
+	
+	public int size() {
+		return queue.size();
 	}
 
 	public void print() {
-		for (Node cur : data) {
+		for (Node cur : queue) {
 			System.out.println(((char) cur.ch) + " : " + cur.freq);
 		}
 	}
