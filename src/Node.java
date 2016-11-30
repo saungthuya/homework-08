@@ -1,7 +1,7 @@
 
 public class Node implements Comparable<Node> {
-	private Short ch;
-	private int freq;
+	protected short ch;
+	protected int freq;
 	private Node left;
 	private Node right;
 
@@ -19,7 +19,14 @@ public class Node implements Comparable<Node> {
 	 *
 	 */
 	public Node(int freq, Node left, Node right) {
-		this.ch = null;
+		this.ch = (Short) null;
+		this.freq = freq;
+		this.left = left;
+		this.right = right;
+	}
+	
+	public Node(Short ch, int freq, Node left, Node right) {
+		this.ch = ch;
 		this.freq = freq;
 		this.left = left;
 		this.right = right;
@@ -27,12 +34,6 @@ public class Node implements Comparable<Node> {
 
 	@Override
 	public int compareTo(Node other) {
-		if (other.freq > freq) {
-			return other.freq - freq;
-		} else if (freq > other.freq) {
-			return freq - other.freq;
-		} else {
-			return 0;
-		}
+		return freq - other.freq;
 	}
 }

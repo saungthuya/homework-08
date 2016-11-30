@@ -1,8 +1,8 @@
 import java.io.File;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.PriorityQueue;
 
 public class HuffmanTree {
 	private Node root;
@@ -13,29 +13,21 @@ public class HuffmanTree {
 	 * @param m
 	 * @citation stackoverflow.com/questions/1066589/iterate-through-a-hashmap
 	 */
-	@SuppressWarnings("null")
-	public HuffmanTree(Map<Short, Integer> m) {
-		cur = m;
-		PriorityQueue<Node> temp = null;
-		Iterator<Entry<Short, Integer>> iter = m.entrySet().iterator();
-		Node n;
-		// 1. Iterate through map.
-		while (iter.hasNext()) {
-			//@SuppressWarnings("unchecked")
-			Map.Entry<Short, Integer> pair = 
-					(Map.Entry<Short, Integer>) iter.next();
-			// 2. Take each item from map and create a node.
-			n = new Node(pair.getKey(), pair.getValue());
-			// 3. Insert the node into the priority queue
-			temp.add(n); //Will it leave equal freq's in chronological order?
-		}	
-	}
 	
-	/*
-	public Map<Short, Integer> getMap() {
+	public HuffmanTree(Map<Short, Integer> m) {
+		PriorityQueue temp = new PriorityQueue();
+		for (Short key : m.keySet()) {
+			temp.enqueue(new Node(key, m.get(key)));
+		}
+		temp.enqueue(new Node((short) 256, 1));
+		
+		temp.print();
 		
 	}
-	*/
+	
+	public void buildTree() {
+		
+	}
 	
 	void encode(BitInputStream in, BitOutputStream out) {
 		
@@ -43,6 +35,16 @@ public class HuffmanTree {
 	
 	void decode(BitInputStream in, BitOutputStream out) {
 		
+	}
+	
+	public static void main(String[] args) {
+		Map<Short, Integer> m = new HashMap<Short, Integer>();
+		m.put((short)'a', 3);
+		m.put((short) ' ', 2);
+		m.put((short) 'z', 1);
+		m.put((short) 'b', 2);
+		
+		HuffmanTree h = new HuffmanTree(m);
 	}
 
 }
