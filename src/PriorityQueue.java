@@ -34,9 +34,11 @@ public class PriorityQueue {
 		return queue.size();
 	}
 
+	/*
 	public void print() {
 		for (Node cur : queue) {
 			System.out.println(((char) cur.ch) + " : " + cur.freq);
 		}
 	}
+	*/
 }

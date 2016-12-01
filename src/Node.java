@@ -1,9 +1,9 @@
 
 public class Node implements Comparable<Node> {
-	protected short ch;
+	protected Short ch;
 	protected int freq;
-	private Node left;
-	private Node right;
+	protected Node left;
+	protected Node right;
 
 	/** Used to construct leaf nodes
 	 */
@@ -37,11 +37,15 @@ public class Node implements Comparable<Node> {
 		return freq - other.freq;
 	}
 	
+	public boolean isLeaf() {
+		return left == null && right == null;
+	}
+	
 	public void printTree() {
 		if (this.left != null) {
 			this.left.printTree();
 		}
-		System.out.println((char) ch + " : " + freq);
+		System.out.println(ch + " : " + freq);
 		
 		if (this.right!= null) {
 			this.right.printTree();
