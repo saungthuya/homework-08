@@ -2,17 +2,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class PriorityQueue {
-	//	
-	//	List<Patient>[] patients = 
-	//	public class Patient {
-	//		public int prio;
-	//		public String name;
-	//		public Patient(int prio, String name) {
-	//			this.prio = prio;
-	//			this.name = name;
-	//		}
-	//	}
-
+	
 	// invariant data is sorted
 	protected List<Node> queue;
 
