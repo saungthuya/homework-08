@@ -54,30 +54,45 @@ public class HuffmanTree {
 
 	}
 
-	public Map<Short, String> huffmanMap() {
-		Map<Short, String> ret = new HashMap<>();
+//	public Map<Short, String> huffmanMap() {
+//		Map<Short, String> ret = new HashMap<>();
+//		String code = "";
+//		huffmanMapHelper(root, code, ret);
+//		for (Short key : ret.keySet()) {
+//			System.out.printf(ret.keySet().toString());
+//		}
+//		return ret;
+//	}
+//
+//	public void huffmanMapHelper(Node cur, String code, Map<Short, String> m) {
+//		if (cur == null) {
+//			return;
+//		}
+//		if (cur.ch != null) {
+//			m.put(cur.ch, code);
+//		} else {
+//			String leftCode = code + "0";
+//			String rightCode = code + "1";
+//			if (cur.left != null) {
+//				huffmanMapHelper(cur.left, leftCode, m);
+//			} else if (cur.right != null) {
+//				huffmanMapHelper(cur.right, rightCode, m);
+//			}
+//		}
+//	}
+	
+	public Map<Short, String> HuffmanMap() {
+		Map<Short, String> m = new HashMap<Short, String>();
 		String code = "";
-		huffmanMapHelper(root, code, ret);
-		for (Short key : ret.keySet()) {
-			System.out.printf(ret.keySet().toString());
-		}
-		return ret;
+		HuffmanMapH(this.root, code, m);
+		return m;
 	}
-
-	public void huffmanMapHelper(Node cur, String code, Map<Short, String> m) {
-		if (cur == null) {
-			return;
-		}
-		if (cur.ch != null) {
-			m.put(cur.ch, code);
+	
+	public void HuffmanMapH(Node n, String str, Map<Short, String> m) {
+		if (n.isLeaf()) {
+			m.put((Short) n.ch, str);
 		} else {
-			String leftCode = code + "0";
-			String rightCode = code + "1";
-			if (cur.left != null) {
-				huffmanMapHelper(cur.left, leftCode, m);
-			} else if (cur.right != null) {
-				huffmanMapHelper(cur.right, rightCode, m);
-			}
+			
 		}
 	}
 
