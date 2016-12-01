@@ -39,7 +39,7 @@ public class HuffmanTree {
 	public void encode(BitInputStream in, BitOutputStream out) {
 		Map<Short, Integer> characterCounts = new HashMap<Short, Integer>();
 		BitInputStream inCopy = in;
-		while(inCopy.hasBits()) {
+		while(in.hasBits()) {
 			short ch = (short) in.readBits(8);
 			if(characterCounts.containsKey(ch)) {
 				characterCounts.put(ch, characterCounts.get(ch) + 1);
@@ -48,8 +48,15 @@ public class HuffmanTree {
 			}
 		}
 		HuffmanTree tree = new HuffmanTree(characterCounts);
-
+		Map<Short, String> huffTable = tree.HuffmanMap();
+		for (Short key : huffTable.keySet()) {
+			String huffmanCode = huffTable.get(key);
+			for (int i = 0; i < huffmanCode.length(); i++) {
+				out.writeBit(Integer.parseInt(huffmanCode));
+			}
+		}
 	}
+	
 	public void decode(BitInputStream in, BitOutputStream out) {
 
 	}
@@ -92,7 +99,13 @@ public class HuffmanTree {
 		if (n.isLeaf()) {
 			m.put((Short) n.ch, str);
 		} else {
-			
+			if (n.left != null) {
+				str = str + "0";
+				HuffmanMapH(n.left, str, m);
+				str = str.substring(0, str.length() - 1);
+			} else if (n.right != null) {
+				str = str + "1";
+			}
 		}
 	}
 
@@ -104,7 +117,7 @@ public class HuffmanTree {
 		m.put((short) 'b', 2);
 
 		HuffmanTree h = new HuffmanTree(m);
-		h.huffmanMap();
+		
 	}
 
 }
