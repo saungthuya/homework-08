@@ -55,6 +55,7 @@ public class HuffmanTree {
 				out.writeBit(Integer.parseInt(huffmanCode));
 				// below is ugly code that might work
 				out.writeBit(Integer.parseInt(Character.toString(huffmanCode.charAt(i))));
+				System.out.println(Integer.parseInt(Character.toString(huffmanCode.charAt(i))));
 			}
 		}
 	}
