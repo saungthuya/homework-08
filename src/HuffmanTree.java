@@ -61,7 +61,25 @@ public class HuffmanTree {
 	}
 	
 	public void decode(BitInputStream in, BitOutputStream out) {
-
+		Short c = 0;
+		while (in.hasBits()) {
+			c = decodeHelper(in, root);
+			out.writeBits(c, 8);
+			
+		} 
+	}
+	
+	public Short decodeHelper(BitInputStream in, Node n) {
+		if (n.isLeaf()) {
+			return n.ch;
+		} else {
+			int bit = in.readBit();
+			if (bit == 0) {
+				return decodeHelper(in, n.left);
+			} else {
+				return decodeHelper(in, n.right);
+			}
+		}
 	}
 
 //	public Map<Short, String> huffmanMap() {
