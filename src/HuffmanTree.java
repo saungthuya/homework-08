@@ -53,6 +53,8 @@ public class HuffmanTree {
 			String huffmanCode = huffTable.get(key);
 			for (int i = 0; i < huffmanCode.length(); i++) {
 				out.writeBit(Integer.parseInt(huffmanCode));
+				// below is ugly code that might work
+				out.writeBit(Integer.parseInt(Character.toString(huffmanCode.charAt(i))));
 			}
 		}
 	}
